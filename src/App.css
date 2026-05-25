@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.15);
+  color: inherit;
+}
+
+button {
+  margin-right: 8px;
+  margin-top: 5px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.15);
+}
+
+button:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.weather-details p {
+  background: rgba(255,255,255,0.08);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.ai-tip {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(56,189,248,0.15);
+}
