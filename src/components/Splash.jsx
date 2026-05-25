@@ -1,18 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function Splash({ onDone }) {
+export default function Splash() {
+  const [hide, setHide] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      onDone();
-    }, 1200); // سريع
+      setHide(true);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="splash">
-      <div className="splash-emoji">🌟</div>
-      <h1>لوحة نبض</h1>
+    <div className={`splash ${hide ? "hide" : ""}`}>
+      <div className="splash-emoji">🌙</div>
+      <h2>نبض</h2>
       <p>جاري التحميل...</p>
     </div>
   );

@@ -1,16 +1,17 @@
-import axios from "axios";
-
-export const getPrayerTimes = async (lat, lon) => {
-  const res = await axios.get(
-    "https://api.aladhan.com/v1/timings",
-    {
-      params: {
-        latitude: lat,
-        longitude: lon,
-        method: 5,
-      },
-    }
+export async function getPrayerTimes() {
+  const res = await fetch(
+    "https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=EG&method=5"
   );
 
-  return res.data.data.timings;
-};
+  const json = await res.json();
+  const t = json.data.timings;
+
+  return {
+    fajr: t.Fajr,
+    dhuhr: t.Dhuhr,
+    asr: t.Asr,
+    maghrib: t.Maghrib,
+    isha: t.Isha,
+    nextPrayer: "قريباً",
+  };
+}

@@ -1,19 +1,23 @@
 const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
-export const getWeather = async (city) => {
+// 🔥 بالمدينة
+export async function getWeather(city) {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=ar`
   );
 
-  if (!res.ok) throw new Error("Weather error");
-  return res.json();
-};
+  if (!res.ok) {
+    throw new Error("City not found");
+  }
 
-export const getWeatherByCoords = async (lat, lon) => {
+  return await res.json();
+}
+
+// 📍 بالإحداثيات
+export async function getWeatherByCoords(lat, lon) {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=ar`
   );
 
-  if (!res.ok) throw new Error("Geo error");
-  return res.json();
-};
+  return await res.json();
+}

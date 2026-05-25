@@ -1,77 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Splash from "./components/Splash";
-import Clock from "./components/Clock";
 import Weather from "./components/Weather";
+import Clock from "./components/Clock";
 import PrayerCard from "./components/PrayerCard";
 import "./App.css";
 
-function App() {
-  const [loading, setLoading] = useState(true);
-
-  // 📌 حفظ الصفحة المختارة
-  const [page, setPage] = useState(
-    localStorage.getItem("page") || "home"
-  );
-
-  const [theme, setTheme] = useState("dark");
-
-  useEffect(() => {
-    const h = new Date().getHours();
-    setTheme(h >= 18 || h < 6 ? "dark" : "light");
-  }, []);
-
-  // 💾 حفظ الصفحة
-  useEffect(() => {
-    localStorage.setItem("page", page);
-  }, [page]);
-
-  if (loading) return <Splash onDone={() => setLoading(false)} />;
+export default function App() {
+  const [view, setView] = useState("home");
 
   return (
-    <div className={`app ${theme}`}>
+    <>
+      <Splash />
 
-      {/* 🧭 SIDEBAR */}
-      <aside className="sidebar">
+      <div className="layout">
 
-        <div className="logo">🌙 نبض</div>
+        <div className="sidebar">
+          <h2>🌙 نبض</h2>
 
-        <button className={page==="home" ? "active" : ""} onClick={() => setPage("home")}>
-          🏠 الرئيسية
-        </button>
+          <button onClick={() => setView("home")}>🏠 الرئيسية</button>
+          <button onClick={() => setView("weather")}>🌤 الطقس</button>
+          <button onClick={() => setView("clock")}>⏰ الوقت</button>
+          <button onClick={() => setView("prayer")}>🕌 الأذان</button>
+        </div>
 
-        <button className={page==="clock" ? "active" : ""} onClick={() => setPage("clock")}>
-          🕒 الوقت
-        </button>
+        <div className="app">
 
-        <button className={page==="weather" ? "active" : ""} onClick={() => setPage("weather")}>
-          🌤 الطقس
-        </button>
+          {view === "home" && (
+            <div className="dashboard">
 
-        <button className={page==="prayer" ? "active" : ""} onClick={() => setPage("prayer")}>
-          🕌 الأذان
-        </button>
+              <div className="card clock-card">
+                <Clock />
+              </div>
 
-      </aside>
+              <div className="card">
+                <PrayerCard />
+              </div>
 
-      {/* 📦 CONTENT */}
-      <main className="content">
+              <div className="card">
+                <Weather />
+              </div>
 
-        {page === "home" && (
-          <div className="grid">
-            <div className="card">🕒 <Clock /></div>
-            <div className="card">🌤 <Weather /></div>
-            <div className="card">🕌 <PrayerCard /></div>
-          </div>
-        )}
+            </div>
+          )}
 
-        {page === "clock" && <div className="card big"><Clock /></div>}
-        {page === "weather" && <div className="card big"><Weather /></div>}
-        {page === "prayer" && <div className="card big"><PrayerCard /></div>}
+          {view === "clock" && <div className="card clock-card"><Clock /></div>}
+          {view === "prayer" && <div className="card"><PrayerCard /></div>}
+          {view === "weather" && <div className="card"><Weather /></div>}
 
-      </main>
+        </div>
 
-    </div>
+      </div>
+    </>
   );
 }
-
-export default App;

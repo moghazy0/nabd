@@ -1,56 +1,356 @@
+
+/* ================= GLOBAL ================= */
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Cairo", sans-serif;
+  color: #fff;
+
+  background: linear-gradient(-45deg,
+    #0f172a,
+    #1e3a8a,
+    #0ea5e9,
+    #020617
+  );
+
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
 }
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= LAYOUT ================= */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 220px;
+  position: fixed;
+  height: 100vh;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(18px);
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.sidebar button {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar button:hover {
+  background: #38bdf8;
+  transform: translateX(5px);
+}
+
+/* ================= MAIN ================= */
+.app {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+/* ================= DASHBOARD ================= */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ================= CARDS ================= */
 .card {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(20px);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+
+  border-radius: 22px;
+  padding: 22px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+
+  transition: 0.3s;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* ================= CLOCK CARD ================= */
+.clock-card {
+  text-align: center;
+
+  background: linear-gradient(135deg,
+    rgba(59,130,246,0.2),
+    rgba(14,165,233,0.1)
+  );
+}
+
+.clock-time {
+  font-size: 85px;
+  font-weight: bold;
+
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(56,189,248,0.5);
+}
+
+/* اليوم منفصل تحت الساعة */
+.clock-day {
+  font-size: 22px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.clock-date {
+  font-size: 18px;
+  opacity: 0.75;
+  margin-top: 5px;
+}
+
+.clock-hijri {
+  font-size: 16px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* ================= PRAYER ================= */
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.next-prayer {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: black;
+
+  padding: 6px 12px;
+  border-radius: 12px;
+
+  font-weight: bold;
+}
+
+.prayer-list p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+/* ================= WEATHER ================= */
+.weather-box {
+  text-align: center;
+}
+
+.weather-box h1 {
+  font-size: 60px;
+}
+
+/* ================= WEATHER SEARCH (IMPORTANT) ================= */
 input {
   width: 100%;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 14px;
+
+  border-radius: 14px;
   border: none;
-  margin-bottom: 10px;
-  background: rgba(255,255,255,0.15);
-  color: inherit;
+
+  outline: none;
+
+  background: rgba(255,255,255,0.1);
+  color: white;
+
+  margin-bottom: 12px;
+
+  transition: 0.3s;
 }
 
+input:focus {
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.02);
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* أزرار الطقس */
 button {
-  margin-right: 8px;
-  margin-top: 5px;
-  padding: 10px 12px;
-  border: none;
+  width: 100%;
+  padding: 12px;
+
   border-radius: 12px;
+  border: none;
+
+  margin-top: 8px;
+
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: black;
+
+  font-weight: bold;
+
   cursor: pointer;
-  background: rgba(255,255,255,0.15);
+  transition: 0.3s;
 }
 
 button:hover {
-  background: rgba(255,255,255,0.25);
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(56,189,248,0.3);
+}
+
+/* ================= SPLASH SCREEN ================= */
+.splash {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle, #0f172a, #020617);
+
+  animation: fadeOut 2.5s ease forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.splash h1 {
+  font-size: 40px;
+  color: #38bdf8;
+  text-shadow: 0 0 20px rgba(56,189,248,0.6);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ================= WEATHER ================= */
+
+.weather-box {
+  text-align: center;
+}
+
+.weather-box img {
+  width: 110px;
+}
+
+.weather-box h1 {
+  font-size: 65px;
+  margin: 0;
 }
 
 .weather-details {
+  margin-top: 20px;
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
-.weather-details p {
+.weather-item {
   background: rgba(255,255,255,0.08);
-  padding: 8px;
-  border-radius: 10px;
+
+  border-radius: 14px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  font-size: 15px;
 }
 
-.ai-tip {
-  margin-top: 12px;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(56,189,248,0.15);
+.weather-item span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ================= PRAYER ================= */
+
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.next-prayer {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+
+  color: black;
+
+  padding: 10px 14px;
+
+  border-radius: 14px;
+
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.next-prayer small {
+  font-size: 12px;
+}
+
+/* LIST */
+
+.prayer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prayer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255,255,255,0.08);
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  transition: 0.3s;
+}
+
+.prayer-item:hover {
+  transform: translateX(-5px);
+  background: rgba(255,255,255,0.12);
+}
+
+.prayer-item strong {
+  color: #38bdf8;
 }
