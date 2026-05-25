@@ -427,3 +427,81 @@ button:hover {
 .app {
   padding-bottom: 80px;
 }
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+
+  /* تقليل المساحات */
+  .app {
+    margin-left: 0 !important;
+    padding: 10px;
+  }
+
+  /* إخفاء الهيدر / السايد بار */
+  .sidebar {
+    display: none !important;
+  }
+
+  /* الكروت أصغر */
+  .card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  /* الساعة */
+  .clock-time {
+    font-size: 45px !important;
+  }
+
+  .clock-day {
+    font-size: 16px !important;
+  }
+
+  .clock-date {
+    font-size: 14px !important;
+  }
+
+  /* الطقس */
+  .weather-box h1 {
+    font-size: 40px !important;
+  }
+
+  .weather-box img {
+    width: 80px;
+  }
+
+  /* الأزرار */
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* البحث */
+  input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* الفوتر */
+  .mini-footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .footer-left {
+    gap: 10px;
+  }
+
+}
+.splash h1 {
+  font-size: 40px;
+}
+
+@media (max-width: 768px) {
+  .splash h1 {
+    font-size: 26px;
+    text-align: center;
+    padding: 0 10px;
+  }
+}
