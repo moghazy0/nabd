@@ -48,6 +48,45 @@ export default function App() {
           {view === "weather" && <div className="card"><Weather /></div>}
 
         </div>
+<footer className="mini-footer">
+
+  <div className="footer-right">
+    Eng_Moghazy
+  </div>
+
+  <div className="footer-left">
+
+    <a
+      href="https://linkedin.com/in/moghazy000"
+      target="_blank"
+    >
+      LinkedIn
+    </a>
+
+    <a
+      href="https://github.com/moghazy0"
+      target="_blank"
+    >
+      GitHub
+    </a>
+
+    <a
+      href="https://facebook.com/mghazy.khedr"
+      target="_blank"
+    >
+      Facebook
+    </a>
+
+    <a
+      href="https://wa.me/201067623668"
+      target="_blank"
+    >
+      WhatsApp
+    </a>
+
+  </div>
+
+</footer>
 
       </div>
     </>
